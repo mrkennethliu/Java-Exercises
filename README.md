@@ -1,2 +1,2 @@
-Projects
+Various standalone java problems
 ========
