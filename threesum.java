@@ -36,6 +36,44 @@ public class threesum {
 		lol = new ArrayList<List<Integer>>(set);
 		return lol;
 	}
+	public int threeSumClosest(int[] nums, int target) {
+		List<Integer> lst = new ArrayList<Integer>();
+		for (int i:nums){
+			lst.add(i);
+		}
+		Collections.sort(lst);
+		Hashtable<Integer,Integer> ht = new Hashtable<Integer,Integer>();
+		int closest = Integer.MAX_VALUE;
+		int sum = 0;
+		System.out.println(lst);
+		for (int i=0;i<nums.length;i++){
+			if (ht.containsKey(lst.get(i))){
+				continue;
+			}
+			ht.put(lst.get(i),1);
+			int j = i+1;
+			int k = nums.length-1;
+			// System.out.println(i+":"+j+":"+k);
+			while (j < k){
+				int two_num = lst.get(i) + lst.get(j);
+				//   System.out.println(two_num+lst.get(k));
+				if (Math.abs(two_num+lst.get(k)-target) < closest) {
+					closest = Math.abs(two_num+lst.get(k)-target);
+					sum = two_num+lst.get(k);
+				}
+				if (two_num + lst.get(k) < target){
+					j++;
+				}
+				else if (two_num + lst.get(k) > target) {
+					k--;
+				}
+				else {
+					return target;
+				}
+			}
+		}
+		return sum;
+	}
 	public static void main(String[] args){
 
 	}
